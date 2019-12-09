@@ -1,7 +1,8 @@
 <?php
-	session_start();
-	include_once "connect.php";
-    if(isset($_POST['submit'])){
+	Session_start();
+	Include_once "connect.php";
+    if(isset($_POST['submit']))
+	{
 
     	
 
@@ -10,7 +11,8 @@
 
 			$result=mysqli_query($con,$str);
 			
-			if(!empty($result)) {
+			if(!empty($result)) 
+			{
 				$error_message = "";
 				$success_message = "You have registered successfully!";	
 				unset($_POST);

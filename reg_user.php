@@ -14,7 +14,7 @@
 				$error_message = "";
 				$success_message = "You have registered successfully!";	
 				unset($_POST);
-				header("Location: product.php");
+				header("Location: profile.php");
 			} else {
 
 				echo "not done not dones";

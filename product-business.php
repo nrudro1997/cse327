@@ -241,10 +241,10 @@
 
 					echo					"<div class='block2-btn-addcart w-size1 trans-0-4'>";
 					echo						"<!-- Button -->";
-					echo 						"<form action='addcart.php?bid=".$bid."' method='post' ";
+					echo 						"<form action='?bid=".$bid."' method='' ";
 					
 					echo							"<button class='flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4'>";
-					echo							"<input type='submit' Value='Add to cart' name='add'/>";
+					echo							"<input type='submit' Value='Add to Read Later' name='add'/>";
 					echo							"</button>";
 					echo 						"</form> ";
 					if(isset($_POST['add']))
@@ -264,10 +264,7 @@
 					echo 					$bookname;
 					echo				"</a>";
 
-					echo				"<span class='block2-price m-text6 p-r-5'>";
-					echo 					'$'.$price;
-					echo				"</span>";
-					echo				"<span class='block2-price m-text6 p-r-5'>";
+					
 					echo 					'Author: '.$author;
 					echo				"</span>";
 					echo			"</div>";
@@ -434,16 +431,11 @@
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+				swal(nameProduct, "is added to read later !", "success");
 			});
 		});
 
-		$('.block2-btn-addwishlist').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-			});
-		});
+		
 	</script>
 
 <!--===============================================================================================-->

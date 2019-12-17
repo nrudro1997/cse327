@@ -22,6 +22,7 @@
       echo $username;
    ?>
    <h2>This is your profile</h2>
+   <h3>Here is your information </h3>
 </section>
 
 	

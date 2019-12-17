@@ -18,8 +18,10 @@
 	<section class="bgwhite p-t-55 p-b-65">
    <h2>This is profile</h2>
    <?php 
+      
       echo $username;
    ?>
+   <h2>This is your profile</h2>
 </section>
 
 	

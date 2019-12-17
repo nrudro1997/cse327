@@ -105,16 +105,11 @@
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
 									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
+										 Read Later
 									</a>
 								</div>
 
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
-									</a>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -129,9 +124,7 @@
 		<h2 class="l-text2 t-center">
 			Books
 		</h2>
-		<p class="m-text13 t-center">
-			Top selling books
-		</p>
+		
 	</section>
 
 

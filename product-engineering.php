@@ -105,16 +105,11 @@
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
 									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
+										 Read Later
 									</a>
 								</div>
 
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
-									</a>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -128,9 +123,7 @@
 		<h2 class="l-text2 t-center">
 			Books
 		</h2>
-		<p class="m-text13 t-center">
-			Top rated books
-		</p>
+		
 	</section>
 
 
@@ -183,10 +176,10 @@
 
 					echo					"<div class='block2-btn-addcart w-size1 trans-0-4'>";
 					echo						"<!-- Button -->";
-					echo 						"<form action='addcart.php?bid=".$bid."' method='post' ";
+					echo 						"<form action='?bid=".$bid."' method='' ";
 					
 					echo							"<button class='flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4'>";
-					echo							"<input type='submit' Value='Add to cart' name='add'/>";
+					echo							"<input type='submit' Value='Add to Read later' name='add'/>";
 					echo							"</button>";
 					echo 						"</form> ";
 					if(isset($_POST['add']))

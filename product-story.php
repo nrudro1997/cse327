@@ -235,7 +235,7 @@
 					echo 						"<form action='addcart.php?bid=".$bid."' method='post' ";
 					
 					echo							"<button class='flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4'>";
-					echo							"<input type='submit' Value='Add to cart' name='add'/>";
+					echo							"<input type='submit' Value='Add to Read Later' name='add'/>";
 					echo							"</button>";
 					echo 						"</form> ";
 					if(isset($_POST['add']))

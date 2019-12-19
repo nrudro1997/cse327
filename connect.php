@@ -1,5 +1,6 @@
 <?php
 	Error_reporting (1);
+jjjj
 	$con=Mysqli_connect("localhost","root","","librarysystem");
 	if ($con==false)
    	{

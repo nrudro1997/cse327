@@ -13,6 +13,11 @@
 			$username = $row['uname'];
 			
 			?>
+
+
+
+
+
 	
 	
 	<section class="bgwhite p-t-55 p-b-65">

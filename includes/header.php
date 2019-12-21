@@ -1,3 +1,18 @@
+<?php
+ include 'lib/session.php';
+ include_once "connect.php";
+ Session::checkSession();
+
+
+?>
+	<?php
+			if(isset($_GET['action'])&&$_GET['action'] == "logout"){
+				Session::destroy();
+			}else{
+				
+			}
+		
+		?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,34 +69,31 @@
 
 			<div class="wrap_header">
 				<!-- Logo -->
-				<a href="index.html" class="logo">
+				<a href="index.php" class="logo">
 					OnlineBookSystem
 				</a>
 
 				<!-- Menu -->
 				<div class="wrap_menu">
-					<nav class="menu">
+				<nav class="menu">
 						<ul class="main_menu">
 						
 							<li>
-								<a href="#">Latest</a>
+								<a href="latest.php">Latest</a>
 								
 							</li>
 
-							<li class="">
-								<a href="#">Blog</a>
-							</li>
-
+							
 							
 
 							<li>
 								<a href="notification.php">Notification</a>
 							</li>
 							<li>
-								<a href="#">Save List</a>
+								<a href="list.php">Save List</a>
 							</li>
 							<li>
-								<a href="#">Feedback</a>
+								<a href="feedback.php">Feedback</a>
 							</li>
 
 
@@ -101,23 +113,47 @@
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<?php
+						$count=0;
+						$userid=Session::get('userId');
 
-						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
+						$readsql="SELECT * FROM savelist s, books b where s.uid='$userid' AND s.bid=b.bid ";
+						$result = mysqli_query($con,$readsql);
+						
+			             if(!empty($result)){
+							
+							while($row = mysqli_fetch_array( $result )){
+								   $count++;
+							}
+								   ?>
+									   <span class="header-icons-noti"><?php echo $count;?></span>
+									   <div class="header-cart header-dropdown">
 							
 
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
+									
+								
+								
 									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Read Later
+									<a href="list.php" class="btn btn-primary">
+									See Read Later List
 									</a>
+							
+								
 								</div>
 
 								
 							</div>
 						</div>
+									   <?php
+
+							}else{
+
+							}
+
+						?>
+					
 					</div>
 				</div>
 			</div>

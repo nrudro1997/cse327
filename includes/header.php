@@ -75,7 +75,7 @@
 							
 
 							<li>
-								<a href="#">Notification</a>
+								<a href="notification.php">Notification</a>
 							</li>
 							<li>
 								<a href="#">Save List</a>
@@ -123,3 +123,6 @@
 			</div>
 		</div>
 	</header>
+	<!-- Button to Open the Modal -->
+
+

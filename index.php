@@ -1,7 +1,14 @@
+<?php
+
+		include 'lib/session.php';
+		include_once('connect.php');
+		Session::init();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product</title>
+	<title>Home</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
@@ -14,15 +21,17 @@
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
+                                       
+</head>                                       
 <body class="animsition">
 
-	<!-- Header -->
-	<header class="header1">                                 
+	<!-- Header -->                     
+<header class="header1">                                 
 		<!-- Header desktop -->
 		<div class="container-menu-header">
 			<div class="topbar">
@@ -48,7 +57,7 @@
 
 			<div class="wrap_header">
 				<!-- Logo -->
-				<a href="index.html" class="logo">
+				<a href="index.php" class="logo">
 					OnlineBookSystem
 				</a>
 
@@ -58,24 +67,21 @@
 						<ul class="main_menu">
 						
 							<li>
-								<a href="#">Latest</a>
+								<a href="latest.php">Latest</a>
 								
 							</li>
 
-							<li >
-								<a href="#">Blog</a>
-							</li>
-
+							
 							
 
 							<li>
 								<a href="notification.php">Notification</a>
 							</li>
 							<li>
-								<a href="#">Save List</a>
+								<a href="list.php">Save List</a>
 							</li>
 							<li>
-								<a href="about.html">Feedback</a>
+								<a href="feedback.php">Feedback</a>
 							</li>
 
 
@@ -95,188 +101,223 @@
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<?php
+						$count=0;
+						$userid=Session::get('userId');
 
-						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
+						$readsql="SELECT * FROM savelist s, books b where s.uid='$userid' AND s.bid=b.bid ";
+						$result = mysqli_query($con,$readsql);
+						
+			             if(!empty($result)){
+							
+							while($row = mysqli_fetch_array( $result )){
+								   $count++;
+							}
+								   ?>
+									   <span class="header-icons-noti"><?php echo $count;?></span>
+									   <div class="header-cart header-dropdown">
 							
 
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
+									
+								
+								
 									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										 Read Later
+									<a href="list.php" class="btn btn-primary">
+									See Read Later List
 									</a>
+							
+								
 								</div>
 
 								
 							</div>
 						</div>
+									   <?php
+
+							}else{
+
+							}
+
+						?>
+					
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
-
-	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/Booksss.jpg);">
-		<h2 class="l-text2 t-center">
-			Books
-		</h2>
 		
-	</section>
+	<!-- Slide1 -->
+	<section class="slide1">
+		<div class="wrap-slick1">
+			<div class="slick1">
+				<div class="item-slick1 item1-slick1" style="background-image: url(images/slide-01.jpg);">
+					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
+						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
+							Welcome to 
+						</span>
 
-
-	<!-- Content page -->
-	<section class="bgwhite p-t-55 p-b-65">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
-					<div class="leftbar p-r-20 p-r-0-sm">
-						
-
-
-							<div class="flex-sb-m flex-w p-t-16">
-								
-						</div>
+						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
+							 Online Book System
+						</h2>
 
 						
-
 					</div>
 				</div>
 
-				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-					
-				<div class = row>
-					<!-- Product -->
-					
+				<div class="item-slick1 item2-slick1" style="background-image: url(images/slide-02.jpg);">
+					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
+						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rollIn">
+							Worried about books?
+						</span>
 
-						<?php
-			include_once('connect.php');
-			
-			$sql="SELECT * FROM books where catagory='medical'";
-			$result = mysqli_query($con,$sql);
-			$row = mysqli_fetch_array( $result );
+						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
+							Here is the Solution
+						</h2>
 
-
-                $bid = $row['bid'];
-                $bookname=$row['bookname'];
-                $author=$row['author'];
-                $catagory=$row['catagory'];
-                $price=$row['price'];
-
-
-                	echo	"<div class='col-sm-12 col-md-6 col-lg-4 p-b-50'>";
-					echo		"<div class='block2'>";
-					echo			"<div class='block2-img wrap-pic-w of-hidden pos-relative'>";
-					echo				"<img src='images/books/".$bid.".jpg' alt='IMG-PRODUCT'>";
-
-					echo				"<div class='block2-overlay trans-0-4'>";
-					echo					"</a>";
-
-					echo					"<div class='block2-btn-addcart w-size1 trans-0-4'>";
-					echo						"<!-- Button -->";
-					echo 						"<form action='?bid=".$bid."' method='' ";
-					
-					echo							"<button class='flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4'>";
-					echo							"<input type='submit' Value='Add to Read Later' name='add'/>";
-					echo							"</button>";
-					echo 						"</form> ";
-					if(isset($_POST['add']))
-					{
-						$url = "?id=".$bid;
-						header ('Location'.$url);
-						exit();
-					}
-
-
-					echo					"</div>";
-					echo				"</div>";
-					echo			"</div>";
-
-					echo			"<div class='block2-txt p-t-20'>";
-					echo				"<a href='product-detail.html' class='block2-name dis-block s-text3 p-b-5'>";
-					echo 					$bookname;
-					echo				"</a>";
-
-					echo				"<span class='block2-price m-text6 p-r-5'>";
-					echo 					'BDT: '.$price;
-					echo				"</span>";
-					echo				"<span class='block2-price m-text6 p-r-5'>";
-					echo 					'Author: '.$author;
-					echo				"</span>";
-					echo			"</div>";
-					echo		"</div>";
-					echo	"</div>";
-
-
-
-
-
-			while($row = mysqli_fetch_array( $result )) {
-
-                $bid = $row['bid'];
-                $bookname=$row['bookname'];
-                $author=$row['author'];
-                $catagory=$row['catagory'];
-                $price=$row['price'];
-
-                
-
-                	echo	"<div class='col-sm-12 col-md-6 col-lg-4 p-b-50'>";
-					echo		"<div class='block2'>";
-					echo			"<div class='block2-img wrap-pic-w of-hidden pos-relative'>";
-					echo				"<img src='images/books/".$bid.".jpg' alt='IMG-PRODUCT'>";
-
-					echo				"<div class='block2-overlay trans-0-4'>";
-					echo					"</a>";
-
-					echo					"<div class='block2-btn-addcart w-size1 trans-0-4'>";
-					echo						"<!-- Button -->";
-					echo 						"<form action='addcart.php?bid=".$bid."' method='post' ";
-					
-					echo							"<button class='flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4'>";
-					echo							"<input type='submit' Value='Add to Read Later' name='add'/>";
-					echo							"</button>";
-					echo 						"</form> ";
-					if(isset($_POST['add']))
-					{
-						$url = "addcart.php?id=".$bid;
-						header ('Location'.$url);
-						exit();
-					}
-
-
-					echo					"</div>";
-					echo				"</div>";
-					echo			"</div>";
-
-					echo			"<div class='block2-txt p-t-20'>";
-					echo				"<a href='product-detail.html' class='block2-name dis-block s-text3 p-b-5'>";
-					echo 					$bookname;
-					echo				"</a>";
-
-					echo				"<span class='block2-price m-text6 p-r-5'>";
-					echo 					'BDT: '.$price;
-					echo				"</span>";
-					echo				"<span class='block2-price m-text6 p-r-5'>";
-					echo 					'Author: '.$author;
-					echo				"</span>";
-					echo			"</div>";
-					echo		"</div>";
-					echo	"</div>";
-
-
-
-                
-			}
-
-
-
-
-						?>
-					
+						
+					</div>
 				</div>
+
+				<div class="item-slick1 item3-slick1" style="background-image: url(images/slide-03.jpg);">
+					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
+						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
+							Find books from home
+						</span>
+
+						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="rotateInUpRight">
+							From our website
+						</h2>
+
+						
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- Banner -->
+	<section class="banner bgwhite p-t-40 p-b-40">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+					<!-- block1 -->
+					<div class="block1 hov-img-zoom pos-relative m-b-30">
+						<img src="images/banner-1.jpg" alt="IMG-BENNER">
+
+						<div class="block1-wrapbtn w-size2">
+							<!-- Button -->
+							<a href="product-science.php" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+								Science Books
+							</a>
+						</div>
+					</div>
+
+					<!-- block1 -->
+					<div class="block1 hov-img-zoom pos-relative m-b-30">
+						<img src="images/banner-05.jpg" alt="IMG-BENNER">
+
+						<div class="block1-wrapbtn w-size2">
+							<!-- Button -->
+							<a href="product-business.php" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+								Business Books
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+					<!-- block1 -->
+					<div class="block1 hov-img-zoom pos-relative m-b-30">
+						<img src="images/banner-03.jpg" alt="IMG-BENNER">
+
+						<div class="block1-wrapbtn w-size2">
+							<!-- Button -->
+							<a href="product-engineering.php" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+								Engineering Books
+							</a>
+						</div>
+					</div>
+
+					<!-- block1 -->
+					<div class="block1 hov-img-zoom pos-relative m-b-30">
+						<img src="images/banner-07.jpg" alt="IMG-BENNER">
+
+						<div class="block1-wrapbtn w-size2">
+							<!-- Button -->
+							<a href="product-medical.php" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+								Medical Books
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+					<!-- block1 -->
+					<div class="block1 hov-img-zoom pos-relative m-b-30">
+						<img src="images/banner-02.jpg" alt="IMG-BENNER">
+
+						<div class="block1-wrapbtn w-size2">
+							<!-- Button -->
+							<a href="product-story.php" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+								Story Books
+							</a>
+						</div>
+					</div>
+
+					<!-- block2 -->
+					<div class="block2 wrap-pic-w pos-relative m-b-30">
+						<img src="images/icons/bg-02.jpg" alt="IMG">
+
+						<div class="block2-content sizefull ab-t-l flex-col-c-m">
+							<h4 class="m-text4 t-center w-size3 p-b-8">
+									Choose from many different catagories
+							</h4>
+
+							
+
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	
+	<!-- Shipping -->
+	<section class="shipping bgwhite p-t-62 p-b-46">
+		<div class="flex-w p-l-15 p-r-15">
+			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
+				<h4 class="m-text12 t-center">
+					
+				</h4>
+
+				<span class="s-text11 t-center">
+					
+			</span>
+			</div>
+
+			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 bo2 respon2">
+					<h4 class="m-text12 t-center">
+							24/7 Service
+						</h4>
+		
+						<span class="s-text11 t-center">
+								Fast and secure 
+						</span>
+			</div>
+
+			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
+				<h4 class="m-text12 t-center">
+					
+				</h4>
+
+				<span class="s-text11 t-center">
+						
+				</span>
 			</div>
 		</div>
 	</section>
@@ -426,11 +467,16 @@
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to read later !", "success");
+				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
 
-		
+		$('.block2-btn-addwishlist').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+			});
+		});
 	</script>
 
 <!--===============================================================================================-->

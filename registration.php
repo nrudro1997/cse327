@@ -59,15 +59,7 @@
 							</li>
 
 							<li>
-								<a href="product.php">Shop</a>
-								<ul class="sub_menu">
-									<li><a href="product-science.php">Sciense</a></li>
-									<li><a href="product-engineering.php">Engineering</a></li>
-									<li><a href="product-business.php">Business studies</a></li>
-									<li><a href="product-medical.php">Medical</a></li>
-									<li><a href="product-story.php">Story</a></li>
-								</ul>
-							</li>
+								<a href="notification.php">Notification</a>
 
 							<li class="sale-noti">
 								<a href="sales.html">Sale</a>

@@ -69,7 +69,7 @@
 							
 
 							<li>
-								<a href="#">Notification</a>
+								<a href="notification.php">Notification</a>
 							</li>
 							<li>
 								<a href="#">Save List</a>
@@ -311,56 +311,34 @@
 
 				<ul>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="product-science.php" class="s-text7">
 							Science
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="product-engineering.php" class="s-text7">
 							Engineering
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="product-business.php" class="s-text7">
 							Business Studies
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="product-medical.php" class="s-text7">
 							Medical
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="product-story.php" class="s-text7">
 							Story
 						</a>
 					</li>
-				</ul>
-			</div>
-
-			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-				<h4 class="s-text12 p-b-30">
-					Links
-				</h4>
-
-				<ul>
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Search
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							About Us
-						</a>
-					</li>
-
-					
 				</ul>
 			</div>
 

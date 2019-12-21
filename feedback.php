@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product</title>
+	<title>Home</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
@@ -14,14 +14,20 @@
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
+	<link rel="stylesheet" type="text/css" href="css/register.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+                                       
+</head>                                       
 <body class="animsition">
 
-	<!-- Header -->
+	<!-- Header -->                     
 	<header class="header1">                                 
 		<!-- Header desktop -->
 		<div class="container-menu-header">
@@ -62,7 +68,7 @@
 								
 							</li>
 
-							<li >
+							<li class="">
 								<a href="#">Blog</a>
 							</li>
 
@@ -75,7 +81,7 @@
 								<a href="#">Save List</a>
 							</li>
 							<li>
-								<a href="about.html">Feedback</a>
+								<a href="#">Feedback</a>
 							</li>
 
 
@@ -105,7 +111,7 @@
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
 									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										 Read Later
+										Read Later
 									</a>
 								</div>
 
@@ -117,172 +123,44 @@
 			</div>
 		</div>
 	</header>
-
-	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/Booksss.jpg);">
-		<h2 class="l-text2 t-center">
-			Books
-		</h2>
-		
-	</section>
-
-
-	<!-- Content page -->
-	<section class="bgwhite p-t-55 p-b-65">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
-					<div class="leftbar p-r-20 p-r-0-sm">
-						
-
-
-							<div class="flex-sb-m flex-w p-t-16">
-								
-						</div>
-
-						
-
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-					
-				<div class = row>
-					<!-- Product -->
-					
-
-						<?php
-			include_once('connect.php');
-			
-			$sql="SELECT * FROM books where catagory='medical'";
-			$result = mysqli_query($con,$sql);
-			$row = mysqli_fetch_array( $result );
-
-
-                $bid = $row['bid'];
-                $bookname=$row['bookname'];
-                $author=$row['author'];
-                $catagory=$row['catagory'];
-                $price=$row['price'];
-
-
-                	echo	"<div class='col-sm-12 col-md-6 col-lg-4 p-b-50'>";
-					echo		"<div class='block2'>";
-					echo			"<div class='block2-img wrap-pic-w of-hidden pos-relative'>";
-					echo				"<img src='images/books/".$bid.".jpg' alt='IMG-PRODUCT'>";
-
-					echo				"<div class='block2-overlay trans-0-4'>";
-					echo					"</a>";
-
-					echo					"<div class='block2-btn-addcart w-size1 trans-0-4'>";
-					echo						"<!-- Button -->";
-					echo 						"<form action='?bid=".$bid."' method='' ";
-					
-					echo							"<button class='flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4'>";
-					echo							"<input type='submit' Value='Add to Read Later' name='add'/>";
-					echo							"</button>";
-					echo 						"</form> ";
-					if(isset($_POST['add']))
-					{
-						$url = "?id=".$bid;
-						header ('Location'.$url);
-						exit();
-					}
-
-
-					echo					"</div>";
-					echo				"</div>";
-					echo			"</div>";
-
-					echo			"<div class='block2-txt p-t-20'>";
-					echo				"<a href='product-detail.html' class='block2-name dis-block s-text3 p-b-5'>";
-					echo 					$bookname;
-					echo				"</a>";
-
-					echo				"<span class='block2-price m-text6 p-r-5'>";
-					echo 					'BDT: '.$price;
-					echo				"</span>";
-					echo				"<span class='block2-price m-text6 p-r-5'>";
-					echo 					'Author: '.$author;
-					echo				"</span>";
-					echo			"</div>";
-					echo		"</div>";
-					echo	"</div>";
+	<!-- Button to Open the Modal -->
 
 
 
 
-
-			while($row = mysqli_fetch_array( $result )) {
-
-                $bid = $row['bid'];
-                $bookname=$row['bookname'];
-                $author=$row['author'];
-                $catagory=$row['catagory'];
-                $price=$row['price'];
-
-                
-
-                	echo	"<div class='col-sm-12 col-md-6 col-lg-4 p-b-50'>";
-					echo		"<div class='block2'>";
-					echo			"<div class='block2-img wrap-pic-w of-hidden pos-relative'>";
-					echo				"<img src='images/books/".$bid.".jpg' alt='IMG-PRODUCT'>";
-
-					echo				"<div class='block2-overlay trans-0-4'>";
-					echo					"</a>";
-
-					echo					"<div class='block2-btn-addcart w-size1 trans-0-4'>";
-					echo						"<!-- Button -->";
-					echo 						"<form action='addcart.php?bid=".$bid."' method='post' ";
-					
-					echo							"<button class='flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4'>";
-					echo							"<input type='submit' Value='Add to Read Later' name='add'/>";
-					echo							"</button>";
-					echo 						"</form> ";
-					if(isset($_POST['add']))
-					{
-						$url = "addcart.php?id=".$bid;
-						header ('Location'.$url);
-						exit();
-					}
-
-
-					echo					"</div>";
-					echo				"</div>";
-					echo			"</div>";
-
-					echo			"<div class='block2-txt p-t-20'>";
-					echo				"<a href='product-detail.html' class='block2-name dis-block s-text3 p-b-5'>";
-					echo 					$bookname;
-					echo				"</a>";
-
-					echo				"<span class='block2-price m-text6 p-r-5'>";
-					echo 					'BDT: '.$price;
-					echo				"</span>";
-					echo				"<span class='block2-price m-text6 p-r-5'>";
-					echo 					'Author: '.$author;
-					echo				"</span>";
-					echo			"</div>";
-					echo		"</div>";
-					echo	"</div>";
-
-
-
-                
-			}
-
-
-
-
-						?>
-					
-				</div>
-			</div>
+<div class="container">
+  <div class="col-lg-6" style="margin:0 auto;">
+  <form action="/action_page.php">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Comment:</label>
+      <textarea class="form-control" id="pwd" placeholder="Enter Feedback" name="feedback"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<div class="col-lg-8" style="margin:0 auto;">
+	<div class="card">
+		<div class="card-body">
+			Here is the feed back
 		</div>
-	</section>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			Here is the feed back
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			Here is the feed back
+		</div>
+	</div>
 
+</div>
 
-	<!-- Footer -->
 	<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
@@ -426,11 +304,16 @@
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to read later !", "success");
+				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
 
-		
+		$('.block2-btn-addwishlist').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+			});
+		});
 	</script>
 
 <!--===============================================================================================-->

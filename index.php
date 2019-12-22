@@ -312,16 +312,25 @@
 
 			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
 				<h4 class="m-text12 t-center">
-					
+					<button type="button" class="btn btn-info" onclick='document.getElementById("chat").style.display = "block";'>Chat with Me!</button>
 				</h4>
 
-				<span class="s-text11 t-center">
-						
-				</span>
+				<div id="chat" style="display:none;">
+				<iframe
+        allow="microphone;"
+        width="250"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/c4818507-76c7-4b71-9db3-4f598f52eb1a">
+    </iframe>
+	</div>
 			</div>
 		</div>
 	</section>
-
+<script>
+    public function chatbox(){
+		
+	}
+</script>
 
 	<!-- Footer -->
 	<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
@@ -421,7 +430,12 @@
 				</ul>
 			</div>
 
-			
+			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+				<h4 class="s-text12 p-b-30">
+					Help
+				</h4>
+
+			</div>
 			</div>
 		</div>
 

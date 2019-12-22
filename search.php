@@ -186,7 +186,7 @@
 						<?php
 		
 		$search="";
-		if($_POST['search']){
+		if($_GET['search']){
 			$search = validate($_GET['searchVal']);
 		
 			function validate($data){

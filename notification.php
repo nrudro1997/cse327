@@ -1,13 +1,13 @@
 <?php
 	 include "includes/header.php";
-	// header file included
+	
 	
  ?>
 
 	 <?php
 			if(isset($_GET['delid'])){
 				$delid = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['delid']);
-				$delquery="DELETE FROM savelist where bid = '$delid' limit 1";   //Delete query added
+				$delquery="DELETE FROM savelist where bid = '$delid' limit 1";   
 				$delreslt= mysqli_query($con,$delquery);
 
 			} 
@@ -17,7 +17,7 @@
 						<?php
 						$counts=0;
 			$userid=Session::get('userId');
-			$sql="SELECT * FROM  books order by bid DESC "; //select query
+			$sql="SELECT * FROM  books order by bid DESC "; 
 			$result = mysqli_query($con,$sql);
 			
 			?>
@@ -47,8 +47,7 @@
 			$author= $row['author'];
 			$bid = $row['bid'];
 			?>
-			/* fetched information from database
-		           Variable added */
+			
     
       <tr>
         <td><?php  echo $counts  ?></td>
@@ -73,7 +72,7 @@
 		
   
   
-   <a href="?action=logout" class="btn btn-danger">Logout</a> //logout button
+   <a href="?action=logout" class="btn btn-danger">Logout</a>
 </section>
 
 	

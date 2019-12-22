@@ -15,8 +15,7 @@
 
 
 						<?php
-						$counts=0;
-			$userid=Session::get('userId');
+						
 			$sql="SELECT * FROM  books order by bid DESC "; 
 			$result = mysqli_query($con,$sql);
 			
@@ -30,10 +29,10 @@
 	<table class="table table-striped">
     <thead>
       <tr>
-        <th style="text-align:center;">Serial</th>
+        
         <th style="text-align:center;">Book Name</th>
 		<th style="text-align:center;">Author Name</th>
-		<th style="text-align:center;">Author Name</th>
+		<th style="text-align:center;">Message</th>
        
       </tr>
     </thead>
@@ -42,7 +41,7 @@
     if(!empty($result)){
 							
 		while($row = mysqli_fetch_array( $result )){  
-			$counts++;
+			
 			$book = $row['bookname'];
 			$author= $row['author'];
 			$bid = $row['bid'];
@@ -52,7 +51,7 @@
 		           Variable added -->
 
       <tr>
-        <td><?php  echo $counts  ?></td>
+       
         <td><?php  echo $book  ?></td>
 		<td><?php  echo $author  ?></td>
 		<td style="color:blue;">Hello! This book is new!</td> 

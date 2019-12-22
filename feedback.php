@@ -62,7 +62,7 @@ if(isset($_POST['submit'])){
 							<a href="registration.html">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register
 								</a>
-						<a href="login.html">
+						<a href="login.php">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login
 						</a>
 						

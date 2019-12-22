@@ -36,7 +36,7 @@
 			<div class="topbar">
 				
 					<form action ="search.php" method ="post">
-							<input type="text" name="searchVal" placeholder="Search here"onkeydown="searchq();"/> <button type="submit" class="searchButton">
+							<input type="text" name="searchVal" placeholder="Search here"onkeydown="searchq();"/> <button name="search" type="submit" class="searchButton">
 							  <i class="fa fa-search"></i>
 						   </button>
                                    </form>
@@ -186,8 +186,8 @@
 						<?php
 		
 		$search="";
-		if($_GET['search']){
-			$search = validate($_GET['search']);
+		if($_POST['search']){
+			$search = validate($_GET['searchVal']);
 		
 			function validate($data){
 				$data = trim($data);

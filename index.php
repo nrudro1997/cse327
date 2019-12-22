@@ -37,7 +37,7 @@
 			<div class="topbar">
 				
 					<form action ="search.php" method ="post">
-							<input type="text" name="searchVal" placeholder="Search here"onkeydown="searchq();"/> <button type="submit" class="searchButton">
+							<input type="text" name="searchVal" placeholder="Search here"onkeydown="searchq();"/> <button name="search" type="submit" class="searchButton">
 							  <i class="fa fa-search"></i>
 						   </button>
                                    </form>

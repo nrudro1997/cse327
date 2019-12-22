@@ -196,7 +196,7 @@
 						<?php
 			
 			
-			$sql="SELECT * FROM books where catagory='science'";
+			$sql="SELECT * FROM books where catagory='science'"; //Select query for category science
 			$result = mysqli_query($con,$sql);
 			if(!empty($result)){
 							

@@ -194,7 +194,7 @@
                 $bookname=$row['bookname'];
                 $author=$row['author'];
                 $catagory=$row['catagory'];
-               
+                $address=$row['address'];
 
 
                 	echo	"<div class='col-sm-12 col-md-6 col-lg-4 p-b-50'>";
@@ -229,6 +229,13 @@
 					echo				"<span class='block2-price m-text6 p-r-5'>";
 					echo 					'Author: '.$author;
 					echo				"</span>";
+					?>
+									</span>
+									<span class='block2-price m-text6 p-r-5'>
+					                 <a href="<?php echo $address;?>" class='btn btn-secondary'>Download PDF</a>
+									
+									</span>
+									<?php
 					echo			"</div>";
 					echo		"</div>";
 					echo	"</div>";

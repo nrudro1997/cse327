@@ -1,3 +1,46 @@
+<?php
+	include 'lib/session.php';
+	include_once "connect.php";
+	Session::init();
+?>
+
+<?php
+		if($_SERVER['REQUEST_METHOD']=='POST')
+		{
+			$uname= validate($_POST['inputEmail']);
+			$password=validate($_POST['inputPassword']);
+			
+			
+			$query = "SELECT * FROM user WHERE uname = '$uname' AND upass = '$password'";
+			
+			$result =mysqli_query($con,$query);
+			if(!empty($result)){
+
+				$value = mysqli_fetch_array($result);
+				$row   = mysqli_num_rows($result);
+				if($row>0){
+					Session::set("login",true);
+					//Session::set("username",$value['uname']);
+					Session::set("userId",$value['uid']);
+					
+					header("Location:profile.php");
+					
+					
+				}else{
+					echo "<span style='color:red;font-size:18px;'>No result found!!</span>";
+				}
+				}else{
+					echo "<span style='color:red;font-size:18px;'>Username or Password is incorrect!!</span>";
+				}
+		}
+		 function validate($data){
+		   $data = trim($data);
+		   $data = stripcslashes($data);
+		   $data = htmlspecialchars($data);  
+			return $data;
+	   }
+		
+		?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,40 +93,31 @@
 
 			<div class="wrap_header">
 				<!-- Logo -->
-				<a href="index.html" class="logo">
+				<a href="index.php" class="logo">
 					OnlineBookSystem
 				</a>
 
 				<!-- Menu -->
 				<div class="wrap_menu">
-					<nav class="menu">
+				<nav class="menu">
 						<ul class="main_menu">
 						
 							<li>
-								<a href="#">Latest</a>
+								<a href="latest.php">Latest</a>
 								
 							</li>
 
-							<li >
-								<a href="#">Blog</a>
-							</li>
-
 							
-<<<<<<< HEAD
+							
 
 							<li>
 								<a href="notification.php">Notification</a>
-=======
-\
-					<li>
-								<a href="#">Notification</a>
->>>>>>> e135a0f597ff6eb6433990991274387df0a9a8aa
 							</li>
 							<li>
-								<a href="#">Save List</a>
+								<a href="list.php">Save List</a>
 							</li>
 							<li>
-								<a href="#">Feedback</a>
+								<a href="feedback.php">Feedback</a>
 							</li>
 
 
@@ -103,28 +137,46 @@
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<?php
+						$count=0;
+						$userid=Session::get('userId');
 
-						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
+						$readsql="SELECT * FROM savelist s, books b where s.uid='$userid' AND s.bid=b.bid ";
+						$result = mysqli_query($con,$readsql);
+						
+			             if(!empty($result)){
+							
+							while($row = mysqli_fetch_array( $result )){
+								   $count++;
+							}
+								   ?>
+									   <span class="header-icons-noti"><?php echo $count;?></span>
+									   <div class="header-cart header-dropdown">
 							
 
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
+									
+								
+								
 									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
+									<a href="list.php" class="btn btn-primary">
+									See Read Later List
 									</a>
+							
+								
 								</div>
 
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
-									</a>
-								</div>
+								
 							</div>
 						</div>
+									   <?php
+
+							}else{
+
+							}
+
+						?>
 					</div>
 				</div>
 			</div>
@@ -144,12 +196,12 @@
 						
 						<div class="form-group">
 							<label for="exampleInputEmail1" class="text-uppercase">Username</label>
-							<input name="uid" style="background:#f1f1f1;" type="text" class="form-control" placeholder="">
+							<input name="inputEmail" style="background:#f1f1f1;" type="text" class="form-control" placeholder="">
 						</div>
 						
 						<div class="form-group">
 							<label for="exampleInputPassword1" class="text-uppercase">Password</label>
-							<input name="upass" style="background:#f1f1f1;" type="password" class="form-control" placeholder="">
+							<input name="inputPassword" style="background:#f1f1f1;" type="password" class="form-control" placeholder="">
 						</div>
 		
 		

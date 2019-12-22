@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 			  include_once "connect.php";
 			  include 'lib/session.php';
@@ -18,6 +19,9 @@ if(isset($_POST['submit'])){
 }
 
 ?>
+=======
+
+>>>>>>> e8e393c05d83c82587a10274533746ab86c90238
 <!DOCTYPE html>
 <html lang="en">
 <head>

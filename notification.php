@@ -3,6 +3,7 @@
 	// header file included
 	
  ?>
+
 	 <?php
 			if(isset($_GET['delid'])){
 				$delid = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['delid']);

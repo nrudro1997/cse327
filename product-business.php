@@ -346,7 +346,20 @@
 					</li>
 				</ul>
 			</div>
+<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+				<h4 class="m-text12 t-center">
+					<button type="button" class="btn btn-info" onclick='document.getElementById("chat").style.display = "block";'>Chat with Me!</button>
+				</h4>
 
+				<div id="chat" style="display:none;">
+				<iframe
+        allow="microphone;"
+        width="250"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/c4818507-76c7-4b71-9db3-4f598f52eb1a">
+    </iframe>
+	</div>
+			</div>
 			
 			</div>
 		</div>

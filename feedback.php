@@ -1,7 +1,27 @@
+<?php
+			  include_once "connect.php";
+			  include 'lib/session.php';
+			  Session::checkSession();
+if(isset($_POST['submit'])){
+	$uname=$_POST['uname'];
+	$comment=$_POST['comment'];
+	
+
+	$feed = "INSERT INTO feedback(name,comment) Values('$uname', '$comment')";
+	$fresult=mysqli_query($con,$feed);
+
+	if(!empty($fresult)){
+		header("Location:feedback.php");
+	}else{
+		header("Location:register.php");
+	}
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home</title>
+	<title>Product</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
@@ -14,20 +34,14 @@
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/register.css">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-                                       
-</head>                                       
+</head>
 <body class="animsition">
 
-	<!-- Header -->                     
+	<!-- Header -->
 	<header class="header1">                                 
 		<!-- Header desktop -->
 		<div class="container-menu-header">
@@ -54,34 +68,31 @@
 
 			<div class="wrap_header">
 				<!-- Logo -->
-				<a href="index.html" class="logo">
+				<a href="index.php" class="logo">
 					OnlineBookSystem
 				</a>
 
 				<!-- Menu -->
 				<div class="wrap_menu">
-					<nav class="menu">
+				<nav class="menu">
 						<ul class="main_menu">
 						
 							<li>
-								<a href="#">Latest</a>
+								<a href="latest.php">Latest</a>
 								
 							</li>
 
-							<li class="">
-								<a href="#">Blog</a>
-							</li>
-
+							
 							
 
 							<li>
 								<a href="notification.php">Notification</a>
 							</li>
 							<li>
-								<a href="#">Save List</a>
+								<a href="list.php">Save List</a>
 							</li>
 							<li>
-								<a href="#">Feedback</a>
+								<a href="feedback.php">Feedback</a>
 							</li>
 
 
@@ -101,66 +112,95 @@
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<?php
+						$count=0;
+						$userid=Session::get('userId');
 
-						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
+						$readsql="SELECT * FROM savelist s, books b where s.uid='$userid' AND s.bid=b.bid ";
+						$result = mysqli_query($con,$readsql);
+						
+			             if(!empty($result)){
+							
+							while($row = mysqli_fetch_array( $result )){
+								   $count++;
+							}
+								   ?>
+									   <span class="header-icons-noti"><?php echo $count;?></span>
+									   <div class="header-cart header-dropdown">
 							
 
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
+									
+								
+								
 									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Read Later
+									<a href="list.php" class="btn btn-primary">
+									See Read Later List
 									</a>
+							
+								
 								</div>
 
 								
 							</div>
 						</div>
+									   <?php
+
+							}else{
+
+							}
+
+						?>
+					
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
-	<!-- Button to Open the Modal -->
 
 
-
-
-<div class="container">
-  <div class="col-lg-6" style="margin:0 auto;">
-  <form action="/action_page.php">
+	<!-- Title Page -->
+	<section>
+	<div class="col-lg-6" style="margin:0 auto;background:#f1f1f1;margin-top:15px;">
+	<p style="text-align:center;color:green;padding:5px;font-size:16px;">Write Your Feedback</p>
+  <form action="" method="post">
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      <label for="unmae">Name:</label>
+      <input type="text" class="form-control"  placeholder="Enter your name" name="uname" required="">
     </div>
     <div class="form-group">
-      <label for="pwd">Comment:</label>
-      <textarea class="form-control" id="pwd" placeholder="Enter Feedback" name="feedback"></textarea>
+      <label for="comment">Comment:</label>
+      <textarea class="form-control"  placeholder="Enter Feedback" name="comment" required=""></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
-<div class="col-lg-8" style="margin:0 auto;">
+<?php
+			$selectsql="SELECT * FROM feedback order by fid DESC";
+			$result = mysqli_query($con,$selectsql);
+			
+			while($row = mysqli_fetch_array( $result )){
+				$name=$row['name'];
+				$feedback=$row['comment'];
+				?>
+				<div class="col-lg-8" style="margin:0 auto;">
 	<div class="card">
 		<div class="card-body">
-			Here is the feed back
+		<p style="color:skyblue;font-size:16px;"><?php  echo $name; ?></p>
+		<p><?php   echo $feedback; ?></p>
 		</div>
 	</div>
-	<div class="card">
-		<div class="card-body">
-			Here is the feed back
-		</div>
-	</div>
-	<div class="card">
-		<div class="card-body">
-			Here is the feed back
-		</div>
-	</div>
+			</div>
+				<?php
+			}
 
-</div>
+?>
 
+</section>
+
+
+	<!-- Footer -->
 	<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
@@ -257,20 +297,7 @@
 					</li>
 				</ul>
 			</div>
-<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-				<h4 class="m-text12 t-center">
-					<button type="button" class="btn btn-info" onclick='document.getElementById("chat").style.display = "block";'>Chat with Me!</button>
-				</h4>
 
-				<div id="chat" style="display:none;">
-				<iframe
-        allow="microphone;"
-        width="250"
-        height="430"
-        src="https://console.dialogflow.com/api-client/demo/embedded/c4818507-76c7-4b71-9db3-4f598f52eb1a">
-    </iframe>
-	</div>
-			</div>
 			
 			</div>
 		</div>
@@ -317,16 +344,11 @@
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+				swal(nameProduct, "is added to read later !", "success");
 			});
 		});
 
-		$('.block2-btn-addwishlist').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-			});
-		});
+		
 	</script>
 
 <!--===============================================================================================-->

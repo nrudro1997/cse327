@@ -1,15 +1,15 @@
 <?php
 
-		include 'lib/session.php';
+		include 'lib/session.php'; //call session.php
 		include_once('connect.php');
-		Session::checkSession();
+		Session::checkSession();  //method for session check 
 		
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Product</title>
+<head>   
+	<title>Product</title> 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
@@ -54,7 +54,7 @@
 				</div>
 			</div>
 
-			<div class="wrap_header">
+			<div class="wrap_header"> 
 				<!-- Logo -->
 				<a href="index.php" class="logo">
 					OnlineBookSystem
@@ -102,10 +102,10 @@
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 						<?php
 						$count=0;
-						$userid=Session::get('userId');
+						$userid=Session::get('userId'); //get method
 
 						$readsql="SELECT * FROM savelist s, books b where s.uid='$userid' AND s.bid=b.bid ";
-						$result = mysqli_query($con,$readsql);
+						$result = mysqli_query($con,$readsql); //sql for database
 						
 			             if(!empty($result)){
 							
@@ -207,7 +207,7 @@
                
 
 				echo $search;
-                	echo	"<div class='col-sm-12 col-md-6 col-lg-4 p-b-50'>";
+                	echo	"<div class='col-sm-12 col-md-6 col-lg-4 p-b-50'>"; //print command
 					echo		"<div class='block2'>";
 					echo			"<div class='block2-img wrap-pic-w of-hidden pos-relative'>";
 					echo				"<img src='images/books/".$bid.".jpg' alt='IMG-PRODUCT'>";

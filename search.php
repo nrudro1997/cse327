@@ -104,7 +104,7 @@
 						$count=0;
 						$userid=Session::get('userId'); //get method
 
-						$readsql="SELECT * FROM savelist s, books b where s.uid='$userid' AND s.bid=b.bid ";
+						$readsql="SELECT * FROM savelist s, books b where s.uid='$userid' AND s.bid=b.bid "; //Sql for database
 						$result = mysqli_query($con,$readsql); //sql for database
 						
 			             if(!empty($result)){
@@ -151,7 +151,7 @@
 	</header>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/Booksss.jpg);">
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/Booksss.jpg);"> 
 		<h2 class="l-text2 t-center">
 			Books
 		</h2>
@@ -187,16 +187,17 @@
 		
 		$search="";
 		if($_GET['search']){
-			$search = validate($_GET['searchVal']);
+			$search = validate($_GET['searchVal']); //validate method for search
 		
 			function validate($data){
-				$data = trim($data);
-				$data = stripcslashes($data);
-				$data = htmlspecialchars($data);  
+				$data = trim($data); //trimming data
+				$data = stripcslashes($data); // method 
+	
+				$data = htmlspecialchars($data);  // method
 				 return $data;
 			}
 			$sql="SELECT * FROM books where (bookname LIKE '%".$search."%') OR (author LIKE '%".$search."%') OR(catagory LIKE '%".$search."%')";
-			$result = mysqli_query($con,$sql);
+			$result = mysqli_query($con,$sql); //sql for database
 			if(!empty($result)){
 							
 				while($row = mysqli_fetch_array( $result )){
@@ -206,7 +207,7 @@
                 $catagory=$row['catagory'];
                
 
-				echo $search;
+				echo $search; //printing command in php
                 	echo	"<div class='col-sm-12 col-md-6 col-lg-4 p-b-50'>"; //print command
 					echo		"<div class='block2'>";
 					echo			"<div class='block2-img wrap-pic-w of-hidden pos-relative'>";
